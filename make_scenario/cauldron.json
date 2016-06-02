@@ -1,0 +1,7 @@
+{
+  "steps": [
+    "config.py",
+    "deploy_directory.py",
+    "setup_trials.py"
+  ]
+}
