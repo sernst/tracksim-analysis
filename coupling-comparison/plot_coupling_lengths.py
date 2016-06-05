@@ -2,9 +2,8 @@ import cauldron as cd
 from cauldron import plotting
 
 trials = cd.shared.trials
-
-
 traces = []
+
 for t in trials:
 
     values = [x['value'] for x in t['couplings']['lengths']]

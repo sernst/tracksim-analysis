@@ -1,0 +1,16 @@
+{
+  "name": "regular-ideals",
+  "steps": [
+    "preamble.md",
+    "load_from_groups.py",
+    "smooth_coupling_lengths.py",
+    "build_dataframe.py",
+    "show_coupling_data.py",
+    "plot_medians.py",
+    "median_historgrams.py",
+    "gait_swings.py",
+    "feature_comparisons.py"
+  ],
+  "summary": "",
+  "title": "Regular ideals"
+}
