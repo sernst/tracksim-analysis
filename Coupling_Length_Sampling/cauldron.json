@@ -1,0 +1,13 @@
+{
+  "author": "Scott Ernst",
+  "name": "Coupling_Length_Sampling",
+  "steps": [
+    "preamble.md",
+    "load_data.py",
+    "sampler.py",
+    "dc_comparison.py",
+    "sample_trials.py"
+  ],
+  "summary": "Investigation of the sampling of the coupling length parameter validity",
+  "title": "Coupling Length Sampling"
+}
