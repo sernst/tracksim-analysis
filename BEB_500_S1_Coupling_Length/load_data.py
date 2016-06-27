@@ -32,4 +32,4 @@ df['order'] = np.arange(0, df.shape[0], 1)
 
 cd.shared.df = df
 
-cd.display.table(df)
+cd.display.table(df.drop('id', axis=1))
