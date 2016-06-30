@@ -1,0 +1,15 @@
+{
+  "author": "",
+  "dependencies": [],
+  "id": "Coupling_Length_Derivation",
+  "name": "Coupling_Length_Derivation",
+  "steps": [
+    "preamble.md",
+    "derivation.md",
+    "examples_50.md",
+    "examples_60.md",
+    "examples_75.md"
+  ],
+  "summary": "",
+  "title": "Coupling length derivation"
+}

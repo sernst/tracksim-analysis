@@ -1,0 +1,46 @@
+<svg version="1.1" id="svg-440561259017" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="-21 -128 2082 149" title="G0-pace_Generated-Regular_PI_25_DC_60_C1p0">
+
+<style>
+/*  */
+#svg-440561259017 .left_pes { opacity: 0.5; fill: DodgerBlue; }
+#svg-440561259017 .right_pes { opacity: 0.5; fill: DarkOrange; }
+#svg-440561259017 .left_manus { opacity: 0.5; fill: DarkOliveGreen; }
+#svg-440561259017 .right_manus { opacity: 0.5; fill: DarkOrchid; }
+#svg-440561259017 .left_pes { stroke-width: 8px; stroke: DodgerBlue; opacity: 0.5; fill: DodgerBlue; }
+#svg-440561259017 .left_pes.assumed { opacity: 0.33; fill: white; }
+#svg-440561259017 .left_pes-marker { stroke-width: 8px; stroke: DodgerBlue; fill: transparent; }
+#svg-440561259017 .right_pes { stroke-width: 8px; stroke: DarkOrange; opacity: 0.5; fill: DarkOrange; }
+#svg-440561259017 .right_pes.assumed { opacity: 0.33; fill: white; }
+#svg-440561259017 .right_pes-marker { stroke-width: 8px; stroke: DarkOrange; fill: transparent; }
+#svg-440561259017 .left_manus { stroke-width: 8px; stroke-dasharray: 4,4; stroke: DarkOliveGreen; opacity: 0.5; fill: DarkOliveGreen; }
+#svg-440561259017 .left_manus.assumed { stroke-dasharray: 4,4; opacity: 0.33; fill: white; }
+#svg-440561259017 .left_manus-marker { stroke-width: 8px; stroke-dasharray: 8,4; stroke: DarkOliveGreen; fill: transparent; }
+#svg-440561259017 .right_manus { stroke-width: 8px; stroke-dasharray: 4,4; stroke: DarkOrchid; opacity: 0.5; fill: DarkOrchid; }
+#svg-440561259017 .right_manus.assumed { stroke-dasharray: 4,4; opacity: 0.33; fill: white; }
+#svg-440561259017 .right_manus-marker { stroke-width: 8px; stroke-dasharray: 8,4; stroke: DarkOrchid; fill: transparent; }
+/*  */
+</style>
+<circle class="left_pes track-pos" r="12" cx="0.0" cy="-106.85217391304347" data-x="0.0" data-y="0.3" data-uid="1" data-y-unc="0.05" data-x-unc="0.05" data-color="DodgerBlue"></circle>
+<circle class="left_pes track-pos" r="12" cx="356.17391304347825" cy="-106.85217391304347" data-x="1.0" data-y="0.3" data-uid="2" data-y-unc="0.05" data-x-unc="0.05" data-color="DodgerBlue" data-annotation="F"></circle>
+<circle class="left_pes track-pos" r="12" cx="712.3478260869565" cy="-106.85217391304347" data-x="2.0" data-y="0.3" data-uid="3" data-y-unc="0.05" data-x-unc="0.05" data-color="DodgerBlue" data-annotation="F"></circle>
+<circle class="left_pes track-pos" r="12" cx="1068.5217391304348" cy="-106.85217391304347" data-x="3.0" data-y="0.3" data-uid="4" data-y-unc="0.05" data-x-unc="0.05" data-color="DodgerBlue" data-annotation="F"></circle>
+<circle class="left_pes track-pos" r="12" cx="1424.695652173913" cy="-106.85217391304347" data-x="4.0" data-y="0.3" data-uid="5" data-y-unc="0.05" data-x-unc="0.05" data-color="DodgerBlue" data-annotation="F"></circle>
+
+<circle class="right_pes track-pos" r="12" cx="178.08695652173913" cy="-0.0" data-x="0.5" data-y="0.0" data-uid="7" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrange" data-annotation="F"></circle>
+<circle class="right_pes track-pos" r="12" cx="534.2608695652174" cy="-0.0" data-x="1.5" data-y="0.0" data-uid="8" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrange" data-annotation="F"></circle>
+<circle class="right_pes track-pos" r="12" cx="890.4347826086956" cy="-0.0" data-x="2.5" data-y="0.0" data-uid="9" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrange" data-annotation="F"></circle>
+<circle class="right_pes track-pos" r="12" cx="1246.608695652174" cy="-0.0" data-x="3.5" data-y="0.0" data-uid="10" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrange" data-annotation="F"></circle>
+<circle class="right_pes track-pos" r="12" cx="1602.782608695652" cy="-0.0" data-x="4.5" data-y="0.0" data-uid="11" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrange" data-annotation="F"></circle>
+
+<circle class="left_manus track-pos" r="8" cx="445.2173913043478" cy="-106.85217391304347" data-x="1.25" data-y="0.3" data-uid="14" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOliveGreen"></circle>
+<circle class="left_manus track-pos" r="8" cx="801.391304347826" cy="-106.85217391304347" data-x="2.25" data-y="0.3" data-uid="15" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOliveGreen" data-annotation="F"></circle>
+<circle class="left_manus track-pos" r="8" cx="1157.5652173913043" cy="-106.85217391304347" data-x="3.25" data-y="0.3" data-uid="16" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOliveGreen" data-annotation="F"></circle>
+<circle class="left_manus track-pos" r="8" cx="1513.7391304347825" cy="-106.85217391304347" data-x="4.25" data-y="0.3" data-uid="17" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOliveGreen" data-annotation="F"></circle>
+<circle class="left_manus track-pos" r="8" cx="1869.9130434782608" cy="-106.85217391304347" data-x="5.25" data-y="0.3" data-uid="18" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOliveGreen" data-annotation="F"></circle>
+
+<circle class="right_manus track-pos" r="8" cx="623.304347826087" cy="-0.0" data-x="1.75" data-y="0.0" data-uid="20" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrchid" data-annotation="F"></circle>
+<circle class="right_manus track-pos" r="8" cx="979.4782608695652" cy="-0.0" data-x="2.75" data-y="0.0" data-uid="21" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrchid" data-annotation="F"></circle>
+<circle class="right_manus track-pos" r="8" cx="1335.6521739130435" cy="-0.0" data-x="3.75" data-y="0.0" data-uid="22" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrchid" data-annotation="F"></circle>
+<circle class="right_manus track-pos" r="8" cx="1691.8260869565217" cy="-0.0" data-x="4.75" data-y="0.0" data-uid="23" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrchid" data-annotation="F"></circle>
+<circle class="right_manus track-pos" r="8" cx="2048.0" cy="-0.0" data-x="5.75" data-y="0.0" data-uid="24" data-y-unc="0.05" data-x-unc="0.05" data-color="DarkOrchid" data-annotation="F"></circle>
+</svg>
