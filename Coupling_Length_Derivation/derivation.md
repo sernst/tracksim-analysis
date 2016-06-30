@@ -137,8 +137,3 @@ formula if $$@alpha$$ is 0 or 1.
 At this point it should be clear that coupling length is a discretely-sampled, 
 periodic value within a trackway. It can be measured twice per gait cycle each
 time a pes support cycle ends.
-
-Uncertainties
-=============
-
-TODO...

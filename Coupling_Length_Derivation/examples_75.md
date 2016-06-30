@@ -6,6 +6,8 @@ discussed above on an array of gaits all with a duty cycle of 75%. In each
 case the measurement is being made at the point within the gait cycle where 
 the left pes support cycle is ending.
 
+In these trials the 
+
 G0 Pace
 ![Pace](assets/dc_75/G0-pace-Snapshot-1.svg)
 

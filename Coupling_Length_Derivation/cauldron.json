@@ -6,6 +6,7 @@
   "steps": [
     "preamble.md",
     "derivation.md",
+    "uncertainty.md",
     "examples_50.md",
     "examples_60.md",
     "examples_75.md"
