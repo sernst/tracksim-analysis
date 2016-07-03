@@ -1,31 +1,34 @@
 import cauldron as cd
 from cauldron import plotting
-import measurement_stats as mstats
 from plotly import graph_objs as go
 
 
-def plot_median_deviations(trial):
+def plot_deviations(
+        df_row,
+        trial,
+        deviations,
+        threshold: float = 1e6,
+        title: str = None,
+        y_label: str = None
+):
     """
-
+    :param df_row:
     :param trial:
+    :param deviations:
+    :param threshold:
+    :param title:
+    :param y_label:
     :return:
     """
 
-    median = mstats.ValueUncertainty(**trial['couplings']['value'])
     data = trial['couplings']['lengths']
     times = [v['time'] for v in data]
-    couplings = mstats.values.from_serialized([v['value'] for v in data])
-
-    deviations = [
-        abs(cl.value - median.value) / cl.uncertainty
-        for cl in couplings
-    ]
 
     segments = []
 
     for time, dev in zip(times, deviations):
         current = segments[-1] if segments else None
-        significant = bool(dev > 2.1)
+        significant = bool(dev > threshold)
 
         if not current or current['significant'] != significant:
             segments.append(dict(
@@ -72,34 +75,52 @@ def plot_median_deviations(trial):
             dict(
                 showlegend=False
             ),
-            title='{} Coupling Length Median Deviations'.format(
-                trial['id'].split('_', 1)[0]
+            title='{} {}'.format(
+                trial['short_id'],
+                title if title else 'Deviations'
             ),
             x_label='Cycle (#)',
-            y_label='Fractional Deviation'
+            y_label=y_label if y_label else 'Deviations'
         )
     )
 
-cd.shared.plot_median_deviations = plot_median_deviations
-
-df = cd.shared.df
-df = df[df.gait_id == cd.shared.GAIT_ID].sort_values(by='coupling_length')
+cd.shared.plot_deviations = plot_deviations
 
 cd.display.header('Coupling Length Median Deviations', 2)
 cd.display.markdown(
     """
-    What we need now is to determine any significant deviations in coupling
-    length values, if they exist, within each trial. To do that we plot the
-    fractional deviation between each coupling length sample in a simulation
-    and the median coupling length value for the entire simulation. In
-    accordance with standard practice, the threshold for a significant
-    difference between a median coupling length and a sample is two.
+    What we need now is to find any significant deviations in coupling
+    length values, if they exist, within each trial. To do that we calculate
+    the deviation between the median coupling length for the sample,
+    $$C@!L_{median}$$, and the individual coupling length samples, $$C@!L_i$$,
+    within in a simulation as:
 
-    The plots below show these coupling length median deviation for the same
+    $$$
+        @Delta_i =
+            @frac{ @left| C@!L_{median} - C@!L_i @right| }
+                 {@sigma_i}
+    $$$
+
+    where $$@sigma_i$$ is the uncertainty for the $$i$$th coupling length.
+    Applying the standard 95% significance threshold, any value in excess of
+    2.0 represents a statistically significant deviation in coupling length
+    from the median value.
+
+    The following show these coupling length median deviations for the same
     simulation trials considered above. The dark grey areas of these plots
     are regions where the coupling length samples did not deviate significantly,
-    and the red areas are regions of significant deviation from the median.
+    and the red areas are regions where significant deviations occurred.
     """
 )
 
-cd.shared.per_trial(df, plot_median_deviations)
+df = cd.shared.df
+df = df[df.gait_id == cd.shared.GAIT_ID].sort_values(by='order')
+
+cd.shared.per_trial(
+    df,
+    plot_deviations,
+    _deviations=cd.shared.deviations,
+    threshold=2.1,
+    title='Coupling Length Median Deviations',
+    y_label='Median Deviation'
+)

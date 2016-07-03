@@ -4,13 +4,14 @@
   "id": "BEB_500_S1_Coupling_Length",
   "name": "BEB_500_S1_Coupling_Length",
   "steps": [
-    "preamble.md",
-    "load_data.py",
-    "medians_comparison.py",
-    "definitions.py",
-    "plot_coupling_lengths.py",
-    "deviations.py",
-    "deviations_comparison.py"
+    "S01_introduction.py",
+    "S02_load.py",
+    "S03_functions.py",
+    "S04_medians.py",
+    "S05_coupling_lengths.py",
+    "S06_residuals.py",
+    "S07_swing.py",
+    "S08_fitness.py"
   ],
   "summary": "Investigation of the BEB-500 S1 trackway coupling lengths",
   "title": "BEB 500 S1 Coupling Length"

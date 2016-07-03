@@ -6,9 +6,9 @@ GAIT_ID = 'G2'
 cd.shared.GAIT_ID = GAIT_ID
 
 
-def plot_couplings(trial):
+def plot_couplings(df_row, trial):
     """
-
+    :param df_row:
     :param trial:
     :return:
     """
@@ -38,16 +38,13 @@ def plot_couplings(trial):
             dict(
                 showlegend=False
             ),
-            title='{} Coupling Length'.format(
-                trial['id'].split('_', 1)[0]
-            ),
+            title='{} Coupling Length'.format(trial['short_id']),
             x_label='Cycle (#)',
             y_label='Coupling Length (m)',
             y_bounds=[median.value - 0.5, median.value + 0.5]
         )
     )
 
-    deviation = 100.0 * (max_value - min_value) / median
     cd.display.markdown(
         """
         Reference Statistics:
@@ -55,14 +52,11 @@ def plot_couplings(trial):
         * _Minimum:_ __{{ min }} m__
         * _Median:_ __{{ median }} m__
         * _Max:_ __{{ max }} m__
-        * _Swing:_ __{{ swing }}%__
         """,
         min=min_value.html_label,
         median=median.html_label,
-        max=max_value.html_label,
-        swing=deviation.html_label
+        max=max_value.html_label
     )
-
 
 df = cd.shared.df
 df = df[df.gait_id == cd.shared.GAIT_ID].sort_values(by='coupling_length')
@@ -71,23 +65,12 @@ cd.display.header('Coupling Lengths versus Cycle', 2)
 cd.display.markdown(
     """
     Let's now begin by isolating the group of trials of the {{ gait_id }} gait
-    type and plotting their coupling-length values versus cycle. The y-axis in
-    the following plots both have a one meter interval that is centered around
-    the median coupling length value for that trial to make comparison between
-    them easier. Summary statistics about each plot are printed below them for
-    reference.
+    type and plotting their coupling-length values versus cycle. The following
+    plots each have a one-meter y-axis interval centered around the median
+    coupling length value for that trial. Summary statistics are printed below
+    each plot for reference.
     """,
     gait_id=GAIT_ID
 )
 
 cd.shared.per_trial(df, plot_couplings)
-
-cd.display.markdown(
-    """
-    It is clear that the coupling length behaves differently over the course of
-    each trial. Given that these differences are not reflected by the
-    corresponding reference statistics - they are very similar between trials
-    when scaling is considered - the need for transient-focused analysis is
-    even more apparent than before.
-    """
-)
