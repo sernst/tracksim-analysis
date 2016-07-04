@@ -15,8 +15,8 @@ pes locators and one for the manus locators.
 
 $$$
     C@!L = @sqrt{
-        @left( x_{@gamma,pes} + x_{@gamma,manus} @right) ^ 2
-        @left( y_{@gamma,pes} + y_{@gamma,manus} @right) ^ 2
+        @left( x_{@gamma,pes} - x_{@gamma,manus} @right) ^ 2
+        @left( y_{@gamma,pes} - y_{@gamma,manus} @right) ^ 2
     }
 $$$
 
