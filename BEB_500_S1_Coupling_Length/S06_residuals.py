@@ -29,7 +29,7 @@ def calculate_residuals(df_row, trial):
     raw_residuals[trial['id']] = r
     scaled_residuals[trial['id']] = scaled
     unexplained_residuals[trial['id']] = 100 * math.sqrt(
-        (scaled.value - scaled.uncertainty) / len(couplings)
+        max(0, scaled.value - scaled.uncertainty) / len(couplings)
     )
 
 
@@ -128,7 +128,7 @@ cd.display.markdown(
     above as,
 
     $$$
-        RMSD_{unexplained} = @sqrt{
+        @Delta_{RMSD} = @sqrt{
             @frac   {RSS_{unexplained}}
                     {N}
         }

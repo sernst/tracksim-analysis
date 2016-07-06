@@ -15,7 +15,7 @@ pes locators and one for the manus locators.
 
 $$$
     C@!L = @sqrt{
-        @left( x_{@gamma,pes} - x_{@gamma,manus} @right) ^ 2
+        @left( x_{@gamma,pes} - x_{@gamma,manus} @right) ^ 2 +
         @left( y_{@gamma,pes} - y_{@gamma,manus} @right) ^ 2
     }
 $$$
@@ -60,7 +60,7 @@ A Walk
 In a symmetric walking gait, the left manus lifts off from the ground 
 +25% after the left pes, the right manus -25% before the left pes and the right
 pes 50% after the left pes. For a duty cycle of 50% the right manus will be
-halfway through a transition as the left manus ends its support phase and the 
+halfway through a transition as the left pes ends its support phase and the 
 other two limbs are in support. Similarly the left manus will be halfway through 
 its transition when the right pes ends its support phase and the other two limbs 
 remain in support. For a walking gait with a duty cycle of 50%, 

@@ -19,7 +19,9 @@ cd.display.header('Solution Fitness')
 
 cd.display.markdown(
     """
-    Now that we have our to fitness parameters, RMSD and SD, we combine them
+    Now that we have our to fitness parameters,
+    $$@Delta_{RMSD}$$ and
+    $$@Delta_{swing}, we combine them
     by plotting each trial on a scatter plot with the parameters as the
     values for each axis. To weight the fitness parameters equally, the values
     for all of the trials have been rescaled to unit range [0, 1].
@@ -75,7 +77,7 @@ cd.display.markdown(
     overall solution fitness is,
 
     $$$
-        fitness = @sqrt{RMSD^2 + @Delta_{swing}^2}
+        fitness = @sqrt{@Delta_{RMSD}^2 + @Delta_{swing}^2}
     $$$
 
     which is rescaled within the results of the trials to a range of [0,1],
