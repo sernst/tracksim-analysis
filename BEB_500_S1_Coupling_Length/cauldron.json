@@ -11,7 +11,8 @@
     "S05_coupling_lengths.py",
     "S06_residuals.py",
     "S07_swing.py",
-    "S08_fitness.py"
+    "S08_persistence.py",
+    "S09_fitness.py"
   ],
   "summary": "Investigation of the BEB-500 S1 trackway coupling lengths",
   "title": "BEB 500 S1 Coupling Length"

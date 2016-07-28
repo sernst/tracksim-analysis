@@ -1,0 +1,12 @@
+{
+  "author": "Scott Ernst",
+  "id": "perturbation_fitness",
+  "name": "perturbation_fitness",
+  "steps": [
+    "load_data.py",
+    "fitness.py",
+    "median_fitness.py"
+  ],
+  "summary": "Investigation of coupling length fitness calculations on perturbed idealized regular trackways",
+  "title": "perturbation_fitness"
+}
