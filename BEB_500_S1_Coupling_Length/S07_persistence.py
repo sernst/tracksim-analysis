@@ -57,7 +57,7 @@ cd.display.markdown(
     Consider a fictional trackway where two simulation trials (a and b)
     produce the following two coupling length plots:
 
-    ![Persistence Example 1](assets/Persistence-Example-1.svg)
+    ![Persistent Residuals Example 1](assets/Persistence-Example-1.svg)
 
     Both plots have the same value everywhere but for two coupling length
     samples. The question to ask ourselves is: are these two trials
@@ -99,8 +99,9 @@ cd.display.markdown(
 
     Taking this into account requires altering the way the residuals are
     calculated. Our concern is not that a residual exists, but that a residual
-    exists and persists. We can define this mathematically by multiplying
-    nearest neighbor residuals instead of squaring each residual as,
+    persists. We can define this mathematically by replacing the square of
+    each residual in the _RSS_ calculation with the product of nearest
+    neighbor residuals,
 
     $$$
         PRSS = @sum_{i=1}^{N-1}
@@ -109,7 +110,7 @@ cd.display.markdown(
     $$$
 
     Applied to our example from above, trial _(a)_ has $$ PRSS = 0 $$ whereas
-    trial _(b)_ has a $$ PRSS = 0.01 $$. The persistent residual removes noise
+    trial _(b)_ has a $$ PRSS = 0.3 $$. The persistent residual removes noise
     variations caused by single-sample deviations. With it we can conclude
     that trial _(a)_ is a more efficacious solution for the trackway.
 
@@ -124,8 +125,7 @@ cd.display.markdown(
     $$$
 
     where $$ @overline{CL} $$ is the median coupling length for the simulation
-    trial. We can then apply this $$ PRSS $$ formulation to the BEB 500 S1
-    trackway:
+    trial. Applying this _PRSS_ formulation to the BEB 500 S1 trackway yields:
     """
 )
 
@@ -145,11 +145,11 @@ cd.display.plotly(
 
 cd.display.markdown(
     """
-    It is immediately apparent that there is a scaling issue with these results.
-    The two trials from the fictional example shared the same expectation
-    values, whereas the median coupling values differ between real simulation
-    trials. Normalizing the residuals by their median coupling values
-    eliminates the problem:
+    It is immediately apparent that there is a scaling issue in these results.
+    We didn't observe it in our fictional example because the two trials shared
+    the same expectation values. Median coupling values generally differ in
+    actual simulation trials. Normalizing the residuals by their median
+    coupling values eliminates the problem:
 
     $$$
         PRSS = @sum_{i=1}^{N-1}
@@ -166,8 +166,8 @@ cd.display.markdown(
     long-coupled trial will have fewer samples than the short-coupled one
     because the simulation will reach the end of the trackway faster. This ends
     up penalizing simulation trials with more samples. Resolving this issue is
-    simply a matter of dividing by the number of residuals calculated when
-    calculating the persistence value:
+    simply a matter of dividing the _PRSS_ by the number of residuals in the
+    summation:
 
     $$$
         PRSS = @frac{1}{N-1} @sum_{i=1}^{N-1}
@@ -215,13 +215,14 @@ cd.display.markdown(
             { @sqrt{ @delta_a^2 + @delta_b^2 } }
     $$$
 
-    where $$ PRSS_{(a,b)} $$ are the persistence values for the two trials,
-    and $$ @delta_{(a, b)} $$ are their respective uncertainties. This formula
-    is the standard one used for comparing two values with uncertainties.
+    where $$ @delta_{(a, b)} $$ are the uncertainties for the _a_ and _b_
+    trials. This is a standard deviation formula used for comparing two values
+    with uncertainties.
 
     While pairwise comparisons are useful, what we'd really like is a global
-    comparison of all trials that can be used to rank their solution efficacy
-    all at once. To do that we generalize the previous comparison formula to:
+    comparison of all trials. This allows the solution efficacy of every trial
+    to be ranked all at once. To do that we generalize the previous comparison
+    formula to:
 
     $$$
         @Delta_{PRSS} = @frac
@@ -229,12 +230,13 @@ cd.display.markdown(
             { @sqrt{ @delta_i^2 + @delta_{min}^{2} } }
     $$$
 
-    Comparisons are made for each trial relative to the smallest persistence
-    value, $$ PRSS_{min}, $$ from the collection of solutions. A value of _0_
-    indicates that there is no observed difference between a particular trial
-    and the _"best"_ solution. The values can now be ranked globally from best
-    to worst, which gives us a fitness parameter for persistence,
-    $$ @Delta_{PRSS} $$.
+    Comparisons are made for each trial relative to the smallest persistent
+    residual sum of the squares value, $$ PRSS_{min}, $$ from the collection
+    of solutions. A value of _0_ indicates that there is no observed difference
+    between a particular trial and the _"best"_ solution. Values greater than
+    _0_ indicate a less efficacious solution than $$ PRSS_{min} $$. This makes
+    $$ @Delta_{PRSS} $$ a suitable fitness parameter representation of
+    persistent residuals.
     """
 )
 
