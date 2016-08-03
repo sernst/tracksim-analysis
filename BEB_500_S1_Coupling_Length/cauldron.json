@@ -9,9 +9,9 @@
     "S03_functions.py",
     "S04_medians.py",
     "S05_coupling_lengths.py",
-    "S06_residuals.py",
-    "S07_swing.py",
-    "S08_persistence.py",
+    "S06_variations.py",
+    "S07_persistence.py",
+    "S08_swing.py",
     "S09_fitness.py"
   ],
   "summary": "Investigation of the BEB-500 S1 trackway coupling lengths",

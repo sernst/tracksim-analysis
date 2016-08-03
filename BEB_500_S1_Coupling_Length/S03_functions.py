@@ -131,3 +131,73 @@ def create_scatter(
     return traces
 
 cd.shared.create_scatter = create_scatter
+
+
+def create_stem(
+        data_frame: pd.DataFrame,
+        values,
+        x_values=None
+):
+    """
+
+    :param data_frame:
+    :param values:
+    :param x_values:
+    :return:
+    """
+
+    traces = []
+
+    data_frame = data_frame.copy()  # type: pd.DataFrame
+
+    if isinstance(values, str):
+        data_frame['y'] = data_frame[values].tolist()
+    else:
+        try:
+            data_frame['y'] = values.tolist()
+        except Exception:
+            data_frame['y'] = values
+
+    if x_values is None:
+        data_frame['x'] = data_frame.coupling_length.tolist()
+    elif isinstance(x_values, str):
+        data_frame['x'] = data_frame[x_values].tolist()
+    else:
+        try:
+            data_frame['x'] = x_values.tolist()
+        except Exception:
+            data_frame['x'] = x_values
+
+    for gait_id in data_frame.gait_id.unique():
+        df_slice = data_frame[data_frame.gait_id == gait_id]
+
+        for index, row in df_slice.iterrows():
+            traces.append(go.Scatter(
+                x=[row.x, row.x],
+                y=[0, row.y],
+                mode='lines',
+                hoverinfo='none',
+                line=dict(
+                    color=row.color,
+                    width=2
+                ),
+                legendgroup=gait_id,
+                showlegend=False
+            ))
+
+        traces.append(go.Scatter(
+            x=df_slice.x,
+            y=df_slice.y,
+            text=df_slice.short_id,
+            name=gait_id,
+            mode='markers',
+            marker=dict(
+                color=df_slice.color,
+                size=10
+            ),
+            legendgroup=gait_id
+        ))
+
+    return traces
+
+cd.shared.create_stem = create_stem

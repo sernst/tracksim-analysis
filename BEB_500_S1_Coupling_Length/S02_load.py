@@ -61,14 +61,36 @@ for t in cd.shared.trials:
         color=plotting.get_color(int(gait_id[1]))
     ))
 
+
+def redundant_filter(row):
+    """
+
+    :param row:
+    :return:
+    """
+
+    if row.gait_index in [0, 4] and row.duty_cycle > 50:
+        # Remove trots and paces with DC > 50% because they are duplicates
+        return False
+
+    if row.duty_cycle > 60 and row.gait_index in [1, 2, 5, 6]:
+        # Remove with DC > 0.5 because they are duplicates
+        return False
+
+    return True
+
+
 df = pd.DataFrame(df).sort_values(
     by=['coupling_length', 'gait_index', 'duty_cycle']
 )
+df['keep'] = df.apply(redundant_filter, axis=1)
+df = df[df.keep]
+
 df['order'] = np.arange(0, df.shape[0], 1)
 df['relative_uncertainty'] = df.uncertainty / df.coupling_length
 
 cd.shared.df = df
 cd.display.table(df[[
     'short_id', 'coupling_length', 'uncertainty',
-    'start_time', 'end_time'
+    'start_time', 'end_time', 'keep'
 ]])

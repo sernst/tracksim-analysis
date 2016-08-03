@@ -59,7 +59,10 @@ def plot_couplings(df_row, trial):
     )
 
 df = cd.shared.df
-df = df[df.gait_id == cd.shared.GAIT_ID].sort_values(by='coupling_length')
+df = df[
+    (df.gait_id == cd.shared.GAIT_ID) &
+    (df.duty_cycle == 60)
+].sort_values(by='coupling_length')
 
 cd.display.header('Coupling Lengths versus Cycle', 2)
 cd.display.markdown(
@@ -74,3 +77,13 @@ cd.display.markdown(
 )
 
 cd.shared.per_trial(df, plot_couplings)
+
+cd.display.markdown(
+    """
+    The observed variations in coupling length values within each trial arise
+    from two potential sources. The first is noise, which is inherent in any
+    biological system. The second is a characteristic reflection of the
+    trackmaker's physical proportions combined with its gait or gaits. It's
+    this second type of characteristic variation that we will exploit.
+    """
+)
