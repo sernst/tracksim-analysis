@@ -77,6 +77,11 @@ def redundant_filter(row):
         # Remove with DC > 0.5 because they are duplicates
         return False
 
+    if row.gait_index == 7 and row.separation == 0:
+        # Remove the smallest solutions because they are not physically
+        # reasonable
+        return False
+
     return True
 
 

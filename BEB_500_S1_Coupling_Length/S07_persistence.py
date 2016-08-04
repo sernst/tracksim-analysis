@@ -61,7 +61,7 @@ cd.display.markdown(
 
     Both plots have the same value everywhere but for two coupling length
     samples. The question to ask ourselves is: are these two trials
-    equally efficacious as a solution their trackway?
+    equally efficacious as a solution for their given trackway?
 
     A common approach for determining this is a residual analysis, where the
     difference between each sample and the expected value is calculated. Each
@@ -110,7 +110,7 @@ cd.display.markdown(
     $$$
 
     Applied to our example from above, trial _(a)_ has $$ PRSS = 0 $$ whereas
-    trial _(b)_ has a $$ PRSS = 0.3 $$. The persistent residual removes noise
+    trial _(b)_ has a $$ PRSS = 0.023 $$. The persistent residual removes noise
     variations caused by single-sample deviations. With it we can conclude
     that trial _(a)_ is a more efficacious solution for the trackway.
 
@@ -212,7 +212,7 @@ cd.display.markdown(
     $$$
         @Delta_{PRSS} = @frac
             { @left| PRSS_a - PRSS_b @right| }
-            { @sqrt{ @delta_a^2 + @delta_b^2 } }
+            { @sqrt{ @sigma_a^2 + @sigma_b^2 } }
     $$$
 
     where $$ @delta_{(a, b)} $$ are the uncertainties for the _a_ and _b_
@@ -227,7 +227,7 @@ cd.display.markdown(
     $$$
         @Delta_{PRSS} = @frac
             { @left| PRSS_i - PRSS_{min} @right| }
-            { @sqrt{ @delta_i^2 + @delta_{min}^{2} } }
+            { @sqrt{ @sigma_i^2 + @sigma_{min}^{2} } }
     $$$
 
     Comparisons are made for each trial relative to the smallest persistent
@@ -235,8 +235,8 @@ cd.display.markdown(
     of solutions. A value of _0_ indicates that there is no observed difference
     between a particular trial and the _"best"_ solution. Values greater than
     _0_ indicate a less efficacious solution than $$ PRSS_{min} $$. This makes
-    $$ @Delta_{PRSS} $$ a suitable fitness parameter representation of
-    persistent residuals.
+    $$ @Delta_{PRSS} $$ a suitable as a fitness parameter for persistent
+    residuals.
     """
 )
 
@@ -252,7 +252,7 @@ cd.display.plotly(
     layout=plotting.create_layout(
         title='PRSS Fitness',
         x_label='Trial Index (#)',
-        y_label='Unexplained RMSD (%)'
+        y_label='Fitness'
     )
 )
 
