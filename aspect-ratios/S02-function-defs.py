@@ -61,7 +61,7 @@ def process(df):
 
     aspects = []
     for w, l in zip(widths, lengths):
-        aspects.append(w / l)
+        aspects.append(l / w)
 
     dist = mstats.create_distribution(aspects)
     population = mstats.distributions.population(dist)
@@ -84,7 +84,7 @@ def process(df):
         layout=plotting.create_layout(
             {},
             title='Weighted Pes Aspect Ratio Distribution',
-            x_label='Pes Aspect Ratio (width / length)',
+            x_label='Pes Aspect Ratio (length / width)',
             y_label='Probability (AU)'
         )
     )

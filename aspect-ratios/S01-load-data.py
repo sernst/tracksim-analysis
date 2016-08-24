@@ -15,6 +15,7 @@ for item_path in glob.iglob(glob_path, recursive=True):
     df = pd.read_csv(item_path)
     trackway_name = item_path.split(os.path.sep)[-1].split('.')[0]
     parts = trackway_name.split('-')
+    df['name'] = trackway_name
     df['site'] = parts[0]
     df['level'] = parts[1]
     df['year'] = parts[2]

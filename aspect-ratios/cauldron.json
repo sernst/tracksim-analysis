@@ -4,9 +4,10 @@
   "name": "aspect-ratios",
   "steps": [
     "S01-load-data.py",
-    "S03-function-defs.py",
-    "S04-BEB-500-S1.py",
-    "S05-all-A16-data.py"
+    "S02-function-defs.py",
+    "S03-BEB-500-S1.py",
+    "S04-all-A16-data.py",
+    "S05.py"
   ],
   "summary": "Investigating the aspect ratios of BEB 500 S1 and the entire data set",
   "title": "aspect-ratios"
