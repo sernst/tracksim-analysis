@@ -1,0 +1,13 @@
+{
+  "author": "Scott Ernst",
+  "id": "aspect-ratios",
+  "name": "aspect-ratios",
+  "steps": [
+    "S01-load-data.py",
+    "S03-function-defs.py",
+    "S04-BEB-500-S1.py",
+    "S05-all-A16-data.py"
+  ],
+  "summary": "Investigating the aspect ratios of BEB 500 S1 and the entire data set",
+  "title": "aspect-ratios"
+}

@@ -7,7 +7,9 @@ from tracksim import reader as tk_reader
 
 
 # groups = [
-#     tk_reader.group('BEB-500-2014-1-S-2_v1_full')
+#     tk_reader.group('BEB-500-2014-1-S-2_v1_full'),
+#     tk_reader.group('BEB-500-2014-1-S-2_v1_full_dc_50'),
+#     tk_reader.group('BEB-500-2014-1-S-2_v1_full_dc_75')
 # ]
 
 groups = [
@@ -16,13 +18,6 @@ groups = [
     tk_reader.group('BEB-500-2014-1-S-1_v0_st9p5_et21_dc_75')
 ]
 
-# groups = [
-#     tk_reader.group('Generated-Regular_PI_25_DC_50'),
-#     tk_reader.group('Generated-Regular_PI_25_DC_60'),
-#     tk_reader.group('Generated-Regular_PI_25_DC_75')
-# ]
-
-# ##### [Comparative rankings based on minimum value] ##### #
 
 trials = []
 for g in groups:
