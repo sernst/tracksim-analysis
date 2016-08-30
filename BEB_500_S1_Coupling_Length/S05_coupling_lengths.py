@@ -57,6 +57,7 @@ def plot_couplings(df_row, trial):
         median=median.html_label,
         max=max_value.html_label
     )
+cd.shared.plot_couplings = plot_couplings
 
 df = cd.shared.df
 df = df[

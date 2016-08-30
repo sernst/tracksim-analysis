@@ -76,6 +76,8 @@ cd.shared.per_trial(df, calculate_fitness)
 worst = max(fitness_values)
 fitness_values = [worst - v for v in fitness_values]
 
+df['fitness'] = fitness_values
+
 cd.display.markdown(
     """
     The closer a particular trial is to origin of this fitness parameter space,
