@@ -12,12 +12,15 @@ another letter 'm' or 'p' for manus or pes and then an underscore character.
 The letters after the underscore indicate what type of information is being
 stored:
 
- * w: width
- * dw: uncertainty in width
- * l: length
- * dl: uncertainty in length
- * name: Cadence track fingerprint
- * uid: Cadence reference unique identifier
+ * **w:** width
+ * **dw:** uncertainty in width
+ * **l:** length
+ * **dl:** uncertainty in length
+ * **name:** Cadence track fingerprint
+ * **uid:** Cadence reference unique identifier
+ * **track:** Track reference number from the field measurements. For 
+    example, if a track was named LP-11, the track value will be the 
+    numeric portion of the name, in this case 11.
 
 Tracks for different limbs are not grouped together by row in a meaningful way.
 The columns for each limb are filled from top to bottom in trackway order
