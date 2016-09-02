@@ -11,6 +11,8 @@ def calculate_median(values, uncertainties, color_index=0, plot_name=None):
 
     :param values:
     :param uncertainties:
+    :param color_index:
+    :param plot_name:
     :return:
     """
 

@@ -1,4 +1,5 @@
 import cauldron as cd
+from cauldron import plotting
 import numpy as np
 
 df = cd.shared.df
@@ -20,12 +21,16 @@ rp_df = df[
 
 pes_length = cd.shared.calculate_median(
     np.concatenate((lp_df['lp_l'].values, rp_df['rp_l'].values)),
-    np.concatenate((lp_df['lp_dl'].values, rp_df['rp_dl'].values))
+    np.concatenate((lp_df['lp_dl'].values, rp_df['rp_dl'].values)),
+    plot_name='Width',
+    color_index=1
 )
 
 pes_width = cd.shared.calculate_median(
     np.concatenate((lp_df['lp_w'].values, rp_df['rp_w'].values)),
-    np.concatenate((lp_df['lp_dw'].values, rp_df['rp_dw'].values))
+    np.concatenate((lp_df['lp_dw'].values, rp_df['rp_dw'].values)),
+    plot_name='Length',
+    color_index=0
 )
 
 lm_df = df[
@@ -40,12 +45,16 @@ rm_df = df[
 
 manus_length = cd.shared.calculate_median(
     np.concatenate((lp_df['lm_l'].values, rp_df['rm_l'].values)),
-    np.concatenate((lp_df['lm_dl'].values, rp_df['rm_dl'].values))
+    np.concatenate((lp_df['lm_dl'].values, rp_df['rm_dl'].values)),
+    plot_name='Width',
+    color_index=3
 )
 
 manus_width = cd.shared.calculate_median(
     np.concatenate((lp_df['lm_w'].values, rp_df['rm_w'].values)),
-    np.concatenate((lp_df['lm_dw'].values, rp_df['rm_dw'].values))
+    np.concatenate((lp_df['lm_dw'].values, rp_df['rm_dw'].values)),
+    plot_name='Length',
+    color_index=2
 )
 
 cd.display.markdown(
@@ -65,18 +74,39 @@ cd.display.markdown(
     Longer coupling length trials do not typically include the first manus
     prints for one or both manus limbs. And smaller coupling length trials
     often omit one or both of the last manus tracks.
-
-    * Pes Width: **{{ pes_width.html_label }} m**
-    * Pes Length: **{{ pes_length.html_label }} m**
-    * Manus Width: **{{ manus_width.html_label }} m**
-    * Manus Length: **{{ manus_length.html_label }} m**
     """,
-    pes_length=pes_length,
-    pes_width=pes_width,
-    manus_length=manus_length,
-    manus_width=manus_width,
     lp_region=lp_region,
     rp_region=rp_region,
     lm_region=lm_region,
     rm_region=rm_region
+)
+
+cd.display.plotly(
+    data=[
+        pes_width['trace'],
+        pes_length['trace']
+    ],
+    layout=plotting.create_layout(
+        title='Pes Width: {} m & Length: {} m'.format(
+            pes_width['median'].html_label,
+            pes_length['median'].html_label
+        ),
+        x_label='Size (m)',
+        y_label='Probability Density (AU)'
+    )
+)
+
+cd.display.plotly(
+    data=[
+        manus_width['trace'],
+        manus_length['trace']
+    ],
+    layout=plotting.create_layout(
+        title='Manus Width: {} m & Length: {} m'.format(
+            manus_width['median'].html_label,
+            manus_length['median'].html_label
+        ),
+        x_label='Size (m)',
+        y_label='Probability Density (AU)'
+    )
 )
