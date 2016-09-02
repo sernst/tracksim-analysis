@@ -71,3 +71,10 @@ cd.display.plotly(
         y_label='Probability Density (AU)'
     )
 )
+
+cd.shared.entire_trackway = dict(
+    pes_width=pes_width,
+    pes_length=pes_length,
+    manus_width=manus_width,
+    manus_length=manus_length
+)

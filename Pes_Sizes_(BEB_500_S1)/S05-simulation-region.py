@@ -110,3 +110,10 @@ cd.display.plotly(
         y_label='Probability Density (AU)'
     )
 )
+
+cd.shared.simulation_region = dict(
+    pes_width=pes_width,
+    pes_length=pes_length,
+    manus_width=manus_width,
+    manus_length=manus_length
+)

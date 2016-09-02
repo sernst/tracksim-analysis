@@ -8,7 +8,8 @@
     "S02-load-data.py",
     "S03-functions.py",
     "S04-entire-trackway.py",
-    "S05-simulation-region.py"
+    "S05-simulation-region.py",
+    "S06-conclusions.py"
   ],
   "summary": "",
   "title": "Pes Sizes (BEB 500 S1)"
