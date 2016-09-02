@@ -16,7 +16,7 @@ def compute_deviation(key):
     b = section[key]['median']
 
     delta = a - b
-    deviation = abs(delta.raw / delta.raw_uncertainty)
+    deviation = abs((a.value - b.value) / delta.uncertainty)
     deviation = mstats.value.round_significant(deviation, 2)
 
     return dict(
@@ -44,6 +44,11 @@ cd.display.markdown(
      * Entire Trackway: {{ pes_length.all.html_label }}
      * Simulation Region: {{ pes_length.section.html_label }}
 
+    Pes Aspect Deviation: **{{ pes_aspect.deviation }}**
+
+     * Entire Trackway: {{ pes_aspect.all.html_label }}
+     * Simulation Region: {{ pes_aspect.section.html_label }}
+
     Manus Width Deviation: **{{ manus_width.deviation }}**
 
      * Entire Trackway: {{ manus_width.all.html_label }}
@@ -54,6 +59,11 @@ cd.display.markdown(
      * Entire Trackway: {{ manus_length.all.html_label }}
      * Simulation Region: {{ manus_length.section.html_label }}
 
+    Manus Aspect Deviation: **{{ manus_aspect.deviation }}**
+
+     * Entire Trackway: {{ manus_aspect.all.html_label }}
+     * Simulation Region: {{ manus_aspect.section.html_label }}
+
     The lack of significant deviation between any of the track size
     measurements indicates that the simulation region of trackway is
     indicative of the entire trackway. The choice to focus on the simulation
@@ -61,6 +71,8 @@ cd.display.markdown(
     """,
     pes_width=compute_deviation('pes_width'),
     pes_length=compute_deviation('pes_length'),
+    pes_aspect=compute_deviation('pes_aspect'),
     manus_width=compute_deviation('manus_width'),
     manus_length=compute_deviation('manus_length'),
+    manus_aspect=compute_deviation('manus_aspect'),
 )

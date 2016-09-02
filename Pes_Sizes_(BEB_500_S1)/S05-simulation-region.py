@@ -1,6 +1,7 @@
 import cauldron as cd
 from cauldron import plotting
 import numpy as np
+import measurement_stats as mstats
 
 df = cd.shared.df
 
@@ -111,9 +112,50 @@ cd.display.plotly(
     )
 )
 
+pes_aspects = [
+    l / w for l, w in zip(
+        pes_length['measurements'],
+        pes_width['measurements']
+    )
+    ]
+pes_aspect = cd.shared.calculate_median(
+    *mstats.values.unzip(pes_aspects),
+    color_index=4,
+    plot_name='Pes'
+)
+
+manus_aspects = [
+    l / w for l, w in zip(
+        manus_length['measurements'],
+        manus_width['measurements']
+    )
+    ]
+manus_aspect = cd.shared.calculate_median(
+    *mstats.values.unzip(manus_aspects),
+    color_index=5,
+    plot_name='Manus'
+)
+
+cd.display.plotly(
+    data=[
+        pes_aspect['trace'],
+        manus_aspect['trace']
+    ],
+    layout=plotting.create_layout(
+        title='Aspects Ratios Manus: {} & Pes: {}'.format(
+            manus_aspect['median'].html_label,
+            pes_aspect['median'].html_label
+        ),
+        x_label='Aspect Ratio (#)',
+        y_label='Probability Density (AU)'
+    )
+)
+
 cd.shared.simulation_region = dict(
+    pes_aspect=pes_aspect,
     pes_width=pes_width,
     pes_length=pes_length,
+    manus_aspect=manus_aspect,
     manus_width=manus_width,
     manus_length=manus_length
 )

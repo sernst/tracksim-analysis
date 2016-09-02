@@ -57,6 +57,7 @@ def calculate_median(values, uncertainties, color_index=0, plot_name=None):
     )
 
     return dict(
+        measurements=measurements,
         median=median,
         trace=trace
     )
