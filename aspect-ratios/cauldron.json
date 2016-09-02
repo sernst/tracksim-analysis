@@ -2,6 +2,7 @@
   "author": "Scott Ernst",
   "id": "aspect-ratios",
   "name": "aspect-ratios",
+  "naming_scheme": "S{{##}}-{{name}}.{{ext}}",
   "steps": [
     "S01-load-data.py",
     "S02-function-defs.py",
