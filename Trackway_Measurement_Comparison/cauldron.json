@@ -1,0 +1,13 @@
+{
+  "author": "",
+  "id": "Trackway_Measurement_Comparison",
+  "name": "Trackway_Measurement_Comparison",
+  "naming_scheme": "S{{##}}-{{name}}.{{ext}}",
+  "steps": [
+    "S01-load_database.py",
+    "S02-process-raw-data.py",
+    "S03-plot-processed-data.py"
+  ],
+  "summary": "",
+  "title": "Trackway Measurement Comparison"
+}

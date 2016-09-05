@@ -26,7 +26,7 @@ for prefix in ['lp', 'rp', 'lm', 'rm']:
     src_name = '{}_name'.format(prefix)
     out_name = '{}_track'.format(prefix)
     df[out_name] = df[src_name].str.split('-').str[-1]
-    df[out_name] = df[out_name].convert_objects(convert_numeric=True)
+    df[out_name] = pd.to_numeric(df[out_name])
 
 cd.shared.df = df
 
