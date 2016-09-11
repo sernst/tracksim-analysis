@@ -4,9 +4,14 @@
   "name": "Trackway_Measurement_Comparison",
   "naming_scheme": "S{{##}}-{{name}}.{{ext}}",
   "steps": [
-    "S01-load_database.py",
-    "S02-process-raw-data.py",
-    "S03-plot-processed-data.py"
+    "S01-configuration-data.py",
+    "S02-load_database.py",
+    "S03-preamble.md",
+    "S04-process-raw-data.py",
+    "S05-plot-processed-data.py",
+    "S06-track-length-width.py",
+    "S07-stride-length.py",
+    "S08-pace-length.py"
   ],
   "summary": "",
   "title": "Trackway Measurement Comparison"
