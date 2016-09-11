@@ -23,7 +23,7 @@ df = pd.merge(
 cd.shared.width_data = generate_data(
     name='width',
     key='widthDeviation',
-    df=cd.shared.df_length_width.query('widthDeviation >= 0.0'),
+    df=df.query('widthDeviation >= 0.0'),
     bin_count=10.0
 )
 
@@ -44,23 +44,3 @@ cd.shared.plot_histogram(
 
 
 
-cd.shared.plot_histogram(
-    data=width_data,
-    key='width',
-    label='Width',
-    is_log=True
-)
-
-cd.shared.plot_remainder(
-    data=width_data,
-    key='width',
-    label='Width',
-    is_log=False
-)
-
-cd.shared.plot_remainder(
-    data=width_data,
-    key='width',
-    label='Width',
-    is_log=True
-)

@@ -9,9 +9,11 @@
     "S03-preamble.md",
     "S04-process-raw-data.py",
     "S05-plot-processed-data.py",
-    "S06-track-length-width.py",
-    "S07-stride-length.py",
-    "S08-pace-length.py"
+    "S06-track-width-histogram.py",
+    "S07-track-width-cdrf.py",
+    "S08-track-length.py",
+    "S09-stride-length.py",
+    "S10-pace-length.py"
   ],
   "summary": "",
   "title": "Trackway Measurement Comparison"
