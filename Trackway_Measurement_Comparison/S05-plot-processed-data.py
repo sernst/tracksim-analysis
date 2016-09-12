@@ -1,11 +1,14 @@
 import locale
+import sys
 
 import cauldron as cd
 import numpy as np
 import plotly.graph_objs as go
 
-locale.setlocale(locale.LC_ALL, ('en_US', 'utf8'))
-
+try:
+    locale.setlocale(locale.LC_ALL, ('en_US', 'utf8'))
+except Exception:
+    pass
 
 def make_layout(
         metadata,
