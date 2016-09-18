@@ -1,4 +1,5 @@
 import math
+import functools
 
 import cauldron as cd
 import measurement_stats as mstats
@@ -105,3 +106,5 @@ cd.display.plotly(
         y_label='Fitness'
     )
 )
+
+

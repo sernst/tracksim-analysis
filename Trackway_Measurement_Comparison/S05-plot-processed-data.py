@@ -1,5 +1,4 @@
 import locale
-import sys
 
 import cauldron as cd
 import numpy as np
@@ -135,7 +134,13 @@ def plot_histogram(data: dict, key: str, label: str, is_log: bool = False):
     )
 
 
-def plot_remainder(data: dict, key: str, label: str, is_log: bool = False):
+def plot_remainder(
+        data: dict,
+        key: str,
+        label: str,
+        is_log: bool = False,
+        normal_comparison = True
+):
     area_values = np.zeros(len(data['df_expected']['x']) - 1)
     traces = []
 
@@ -163,17 +168,18 @@ def plot_remainder(data: dict, key: str, label: str, is_log: bool = False):
         y_axis['title'] = 'Log {}'.format(y_axis['title'])
         y_axis['type'] = 'log'
 
-    traces.append(go.Scatter(
-        name='Normal Threshold',
-        x=100.0 * data['df_expected']['x'],
-        y=data['df_expected']['y'],
-        mode='lines',
-        line=go.Line(
-            color='rgba(0, 0, 0, 0.75)',
-            dash='dash',
-            width=1.0
-        )
-    ))
+    if normal_comparison:
+        traces.append(go.Scatter(
+            name='Normal Threshold',
+            x=100.0 * data['df_expected']['x'],
+            y=data['df_expected']['y'],
+            mode='lines',
+            line=go.Line(
+                color='rgba(0, 0, 0, 0.75)',
+                dash='dash',
+                width=1.0
+            )
+        ))
 
     cd.display.plotly(
         data=traces,
@@ -184,6 +190,7 @@ def plot_remainder(data: dict, key: str, label: str, is_log: bool = False):
             y_axis=y_axis
         )
     )
+
 
 cd.shared.put(
     make_layout=make_layout,

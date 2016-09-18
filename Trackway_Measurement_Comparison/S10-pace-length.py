@@ -15,22 +15,35 @@ df = pd.merge(
     right_on='uid'
 )
 
-stride_data = generate_data(
+pace_data = generate_data(
     name='pace',
     key='Deviation',
     df=df.query('Deviation >= 0.0'),
     bin_count=10.0
 )
 
+cdr_values = cd.shared.cdr_values_at(pace_data, [0, 2])
+
+cd.display.markdown(
+    """
+    ## Pace Length
+
+    * {{ y0 }}% with no deviation
+    * {{ y2 }}% with a deviation < 200%
+    """,
+    y0=cdr_values[0]['label'],
+    y2=cdr_values[2]['label']
+)
+
 cd.shared.plot_remainder(
-    data=stride_data,
+    data=pace_data,
     key='pace',
     label='Pace',
     is_log=False
 )
 
 cd.shared.plot_remainder(
-    data=stride_data,
+    data=pace_data,
     key='pace',
     label='Pace',
     is_log=True

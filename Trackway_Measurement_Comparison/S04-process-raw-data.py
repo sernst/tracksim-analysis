@@ -4,6 +4,7 @@ import cauldron as cd
 import numpy as np
 import pandas as pd
 from scipy.stats import norm
+import measurement_stats as mstats
 
 SIZE_CLASSES = cd.shared.SIZE_CLASSES
 
@@ -140,7 +141,53 @@ def get_analyzer_results(
         if df is not None:
             return df
 
+
+def closest_value(source, target):
+    """
+
+    :param source:
+    :param target:
+    :return:
+    """
+
+    out = 1e6
+    for value in source:
+        if abs(value - target) < abs(out - target):
+            out = value
+    return out
+
+
+def cdr_values_at(measurement_data, x_values):
+    """
+
+    :param measurement_data:
+    :param x_values:
+    :return:
+    """
+
+    df_cdf = measurement_data['sizes']['all']['df_cdf']
+
+    out = dict()
+
+    for x_target in x_values:
+        x = closest_value(df_cdf['x'], x_target)
+        y = df_cdf[df_cdf['x'] == x]['y'].values[0]
+        label = '{:0.1f}'.format(
+            mstats.value.round_to_order(100 * (1 - y), -1)
+        )
+        out[x_target] = dict(
+            x=x,
+            x_target=x_target,
+            y=y,
+            label=label
+        )
+
+    return out
+
+
 cd.shared.put(
     generate_data=generate_data,
-    get_analyzer_results=get_analyzer_results
+    get_analyzer_results=get_analyzer_results,
+    closest_value=closest_value,
+    cdr_values_at=cdr_values_at
 )

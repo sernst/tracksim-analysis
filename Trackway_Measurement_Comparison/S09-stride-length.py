@@ -22,6 +22,19 @@ stride_data = generate_data(
     bin_count=10.0
 )
 
+cdr_values = cd.shared.cdr_values_at(stride_data, [0, 2])
+
+cd.display.markdown(
+    """
+    ## Stride Length
+
+    * {{ y0 }}% with no deviation
+    * {{ y2 }}% with a deviation < 200%
+    """,
+    y0=cdr_values[0]['label'],
+    y2=cdr_values[2]['label']
+)
+
 cd.shared.plot_remainder(
     data=stride_data,
     key='stride',
