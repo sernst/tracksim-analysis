@@ -45,6 +45,9 @@ def plot_couplings(df_row, trial):
         )
     )
 
+    delta = abs(min_value - max_value)
+    deviation = abs(min_value.value - max_value.value) / delta.uncertainty
+
     cd.display.markdown(
         """
         Reference Statistics:
@@ -52,10 +55,12 @@ def plot_couplings(df_row, trial):
         * _Minimum:_ __{{ min }} m__
         * _Median:_ __{{ median }} m__
         * _Max:_ __{{ max }} m__
+        * _Deviations:_ __{{ deviation }}__
         """,
         min=min_value.html_label,
         median=median.html_label,
-        max=max_value.html_label
+        max=max_value.html_label,
+        deviation=0.01 * round(100 * deviation)
     )
 cd.shared.plot_couplings = plot_couplings
 

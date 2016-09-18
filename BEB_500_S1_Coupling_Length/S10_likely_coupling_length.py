@@ -8,6 +8,10 @@ import numpy as np
 
 df = cd.shared.df
 
+SCALING = 0.12
+SEGMENT_MIN = 1.23
+SEGMENT_MAX = 2.1
+
 cd.display.markdown(
     """
     The stem plot of fitness is useful for placing individual trials
@@ -77,7 +81,10 @@ cd.display.markdown(
     fitness=to_numeric_label(max_value[1])
 )
 
-points = [p for p in zip(x_values, y_values) if 1.2 < p[0] < 1.9]
+points = [
+    p for p in zip(x_values, y_values)
+    if SEGMENT_MIN < p[0] < SEGMENT_MAX
+    ]
 x_segment_values, y_segment_values = zip(*points)
 
 segment_trace = go.Scatter(
@@ -92,17 +99,17 @@ segment_trace = go.Scatter(
 )
 
 population = mstats.distributions.population(distribution, 4096)
-population = [x for x in population if 1.2 < x < 1.9]
+population = [x for x in population if SEGMENT_MIN < x < SEGMENT_MAX]
 
 coupling_length = mstats.ValueUncertainty(
-    np.mean(population),
-    np.std(population)
+    np.median(population),
+    mstats.distributions.weighted_median_average_deviation(population)
 )
 
 gaussian_fit = mstats.create_distribution([coupling_length])
 
 y_gauss_values = gaussian_fit.probabilities_at(x_values)
-y_gauss_values = [0.12 * y for y in y_gauss_values]
+y_gauss_values = [SCALING * y for y in y_gauss_values]
 
 gaussian_trace = go.Scatter(
     x=x_values,
