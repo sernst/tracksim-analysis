@@ -38,11 +38,11 @@ $$ @left( x_{next}, y_{next} @right) $$
 track center positions,
 
 $$$
-    @Upsilon = @left( 
+    @psi = @left( 
     @begin{array}{ c c }
         x_{prev} + @alpha @left( x_{next} - x_{prev} @right), @@
         y_{prev} + @alpha @left( y_{next} - y_{prev} @right)
-    @end{array}    
+    @end{array}
     @right)
 $$$
 
@@ -115,21 +115,21 @@ centers and phase, $$@alpha$$.
 $$$
     @gamma_{manus} = @left(
         @frac{
-            x_{@Upsilon1} + 
-            x_{@Upsilon2,prev} + 
-            @alpha @left( x_{@Upsilon2,next} - x_{@Upsilon2,prev} @right)
+            x_{@psi1} + 
+            x_{@psi2,prev} + 
+            @alpha @left( x_{@psi2,next} - x_{@psi2,prev} @right)
         } {2},
         @frac{
-            y_{@Upsilon1} + 
-            y_{@Upsilon1,prev} + 
-            @alpha @left( y_{@Upsilon1,next} - y_{@Upsilon1,prev} @right)
+            y_{@psi1} + 
+            y_{@psi1,prev} + 
+            @alpha @left( y_{@psi1,next} - y_{@psi1,prev} @right)
         } {2}
     @right),
 $$$
 
 The track centers 
-$$ @left( x_{@Upsilon1}, y_{@Upsilon1} @right) $$ and
-$$ @left( x_{@Upsilon2}, y_{@Upsilon2} @right) $$ 
+$$ @left( x_{@psi1}, y_{@psi1} @right) $$ and
+$$ @left( x_{@psi2}, y_{@psi2} @right) $$ 
 could be assigned to right or left tracks depending on the selected 
 configuration. This formula reduces to the original midpoint 
 formula if $$@alpha$$ is 0 or 1.
