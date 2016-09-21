@@ -5,8 +5,8 @@ from plotly import graph_objs as go
 from tracksim import coupling
 from tracksim.coupling.plotting import stem
 
-cd.watch(coupling)
-cd.watch(stem)
+cd.refresh(coupling)
+cd.refresh(stem)
 
 df = cd.shared.df  # type: pd.DataFrame
 

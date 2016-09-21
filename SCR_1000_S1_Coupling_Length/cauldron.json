@@ -1,0 +1,18 @@
+{
+  "author": "Scott Ernst",
+  "dependencies": [],
+  "id": "SCR_1000_S1_Coupling_Length",
+  "name": "SCR_1000_S1_Coupling_Length",
+  "steps": [
+    "S01-introduction.py",
+    "S02-load.py",
+    "S03-medians.py",
+    "S04-prss.py",
+    "S05-swing.py",
+    "S06-fitness.py",
+    "S07-likely_coupling_length.py",
+    "S08-best-solutions.py"
+  ],
+  "summary": "Investigation of the SCR-1000 S1 trackway coupling lengths",
+  "title": "SCR 1000 S1 Coupling Length"
+}

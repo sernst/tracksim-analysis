@@ -1,7 +1,7 @@
 import cauldron as cd
 from tracksim.coupling import loader as tk_loader
 
-cd.watch(tk_loader)
+cd.refresh(tk_loader)
 
 data = tk_loader.load([
     'BEB-500-2014-1-S-3_v0_st9p5_end_dc_50',

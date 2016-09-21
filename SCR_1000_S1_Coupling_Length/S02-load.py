@@ -4,9 +4,9 @@ from tracksim.coupling import loader as tk_loader
 cd.refresh(tk_loader)
 
 data = tk_loader.load([
-    'CRO-500-2004-3-S-2_v0_full_dc50',
-    'CRO-500-2004-3-S-2_v0_full',
-    'CRO-500-2004-3-S-2_v0_full_dc75'
+    'SCR-1000-2008-18-S-1_v0_st1_et8_dc50',
+    'SCR-1000-2008-18-S-1_v0_st1_et8',
+    'SCR-1000-2008-18-S-1_v0_st1_et8_dc75'
     ],
     row_filter=tk_loader.redundant_filter
 )

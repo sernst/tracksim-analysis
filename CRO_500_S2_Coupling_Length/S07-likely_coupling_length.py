@@ -3,7 +3,7 @@ import plotly.graph_objs as go
 from cauldron import plotting
 from tracksim import coupling
 
-cd.watch(coupling)
+cd.refresh(coupling)
 
 df = cd.shared.df
 dist_data = coupling.distribution(df, 1.23, 2.1, 0.13)

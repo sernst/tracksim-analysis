@@ -4,7 +4,7 @@ from cauldron import plotting
 from tracksim.coupling import prss
 from tracksim.coupling.plotting import scatter
 
-cd.watch(prss)
+cd.refresh(prss)
 
 cd.display.markdown(
     """

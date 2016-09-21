@@ -2,7 +2,7 @@ import cauldron as cd
 from cauldron import plotting
 from tracksim.coupling.plotting import band
 
-cd.watch(band)
+cd.refresh(band)
 
 df = cd.shared.df.sort_values(by='fitness', ascending=False).head()
 

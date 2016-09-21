@@ -4,7 +4,7 @@ import plotly.graph_objs as go
 from cauldron import plotting
 from tracksim.coupling.plotting import scatter
 
-cd.watch(scatter)
+cd.refresh(scatter)
 
 df = cd.shared.df  # type: pd.DataFrame
 

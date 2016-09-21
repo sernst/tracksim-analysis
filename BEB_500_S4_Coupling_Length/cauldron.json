@@ -1,0 +1,18 @@
+{
+  "author": "Scott Ernst",
+  "dependencies": [],
+  "id": "BEB_500_S4_Coupling_Length",
+  "name": "BEB_500_S4_Coupling_Length",
+  "steps": [
+    "S01-introduction.py",
+    "S02-load.py",
+    "S03-medians.py",
+    "S04-prss.py",
+    "S05-swing.py",
+    "S06-fitness.py",
+    "S07-likely_coupling_length.py",
+    "S08-best-solutions.py"
+  ],
+  "summary": "Investigation of the BEB-500 S4 trackway coupling lengths",
+  "title": "BEB 500 S4 Coupling Length"
+}

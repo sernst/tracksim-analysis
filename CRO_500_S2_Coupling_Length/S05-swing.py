@@ -4,7 +4,7 @@ from cauldron import plotting
 from tracksim.coupling import swing
 from tracksim.coupling.plotting import scatter
 
-cd.watch(swing)
+cd.refresh(swing)
 
 df = cd.shared.df
 swing_data = swing.compute_many(cd.shared.trials)
