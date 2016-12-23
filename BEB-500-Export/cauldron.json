@@ -1,0 +1,21 @@
+{
+  "author": "",
+  "id": "BEB-500-Export",
+  "name": "BEB-500-Export",
+  "naming_scheme": "S{{##}}-{{name}}.{{ext}}",
+  "steps": [
+    "S01-CSV-Format.py",
+    "S02-Introduction.md",
+    "S03-Load-Data.py",
+    "S04-Create-Output.py",
+    "S05-Trackway-Length.py",
+    "S06-Track-Name.py",
+    "S07-Width-And-Length.py",
+    "S08-Rotation.py",
+    "S09-Stride-Length.py",
+    "S10-Pace-Length.py",
+    "S11-Export-Results.py"
+  ],
+  "summary": "",
+  "title": "BEB-500-Export"
+}
