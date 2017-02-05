@@ -1,0 +1,16 @@
+{
+  "author": "",
+  "id": "Gauge_Quantization",
+  "library_folders": [
+    "libs"
+  ],
+  "name": "Gauge_Quantization",
+  "naming_scheme": "S{{##}}-{{name}}.{{ext}}",
+  "steps": [
+    "S01-Initialize.py",
+    "S02-Introduction.md",
+    "S03.py"
+  ],
+  "summary": "",
+  "title": "Gauge Quantization"
+}
