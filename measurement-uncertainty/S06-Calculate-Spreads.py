@@ -32,7 +32,8 @@ def compute_spreads(trackway_df: pd.DataFrame) -> dict:
 
 def create_trackway_row(
         trackway_name: str,
-        trackway_df: pd.DataFrame
+        trackway_df: pd.DataFrame,
+        progress: int
 ) -> dict:
     """
 

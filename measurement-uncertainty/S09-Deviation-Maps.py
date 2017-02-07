@@ -39,7 +39,8 @@ def to_position_scatter(tracks: pd.DataFrame) -> typing.List[dict]:
 def plot_deviations_map(
         trackway_name: str,
         trackway_df: pd.DataFrame,
-        marker_size: float = 8
+        marker_size: float = 8,
+        progress: float = 0
 ):
     """
 

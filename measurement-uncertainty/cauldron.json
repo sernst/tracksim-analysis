@@ -6,13 +6,15 @@
   "steps": [
     "S01-Introduction.md",
     "S02-Load-Data.py",
-    "S03-Normality-Introduction.md",
-    "S04-Width-Normailties.py",
+    "S03.py",
+    "S04-Variability.py",
     "S05-Uniform-Uncertainties.md",
     "S06-Calculate-Spreads.py",
     "S07-Plot-Spreads.py",
     "S08-Maximum-Spread.py",
-    "S09-Deviation-Maps.py"
+    "S09-Deviation-Maps.py",
+    "S10-Normality-Introduction.md",
+    "S11-Width-Normailties.py"
   ],
   "summary": "",
   "title": "measurement-uncertainty"

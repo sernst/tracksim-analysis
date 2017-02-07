@@ -31,7 +31,7 @@ def on(
         callback,
         trackway_name: str,
         tracks_df: pd.DataFrame,
-        progress: float,
+        progress: float = 0,
         **kwargs
 ):
     """

@@ -9,7 +9,16 @@
   "steps": [
     "S01-Initialize.py",
     "S02-Introduction.md",
-    "S03.py"
+    "S03-Load-Trackway.py",
+    "S04-Plot-Naked.py",
+    "S05-Introduce-Uncertainty.md",
+    "S06-Explore-Uncertainty.py",
+    "S07-Plot-Uncertainty.py",
+    "S08-Introduce-Quantization.md",
+    "S09.py",
+    "S10.py",
+    "S11-Forward-Quantizing.py",
+    "S12-Precision-Quantizing.py"
   ],
   "summary": "",
   "title": "Gauge Quantization"
