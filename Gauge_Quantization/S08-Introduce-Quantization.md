@@ -23,14 +23,4 @@ of segments will always be less than or equal to the number of tracks in
 the trackway, $$ N_s @leq N_t $$.
 
 For a better conceptual understanding of how this forward windowing algorithm
-functions let's consider a few ideal trackway cases.
-
----
-We'll begin by quantizing using the unweighted data. In order
-to do this we need to come up with a quantization tolerance
-because, as you can see in the plot, a certain amount of noise
-exists in the gauge values from step to step. Already we have
-to be somewhat arbitrary in the analysis. There is no completely
-objective way to assign a tolerance in the absence of uncertainty
-values. For this analysis we'll use fractional values of the width
-of the track and see how those compare.
+works, let's consider a few idealized trackway cases.

@@ -1,29 +1,19 @@
-import cauldron as cd
-import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
-from _Gauge_Quantization.windowing import forward as forward_windowing
+import numpy as np
 from _Gauge_Quantization import plotting
-
-tracks = cd.shared.tracks  # type: pd.DataFrame
-trackway_name = cd.shared.TRACKWAY_NAME
+from _Gauge_Quantization.windowing import forward as forward_windowing
 
 
-def make_segments(fraction: float) -> list:
+def compute_unweighted(
+        tracks: pd.DataFrame,
+        tolerance_fraction: float
+) -> dict:
     """ """
 
     pes_tracks = tracks[tracks['pes'] == 1].copy()  # type: pd.DataFrame
-    tolerance = 0.5 * fraction * np.median(pes_tracks['width'].values)
+    tolerance = 0.5 * tolerance_fraction * np.median(pes_tracks['width'].values)
     pes_tracks['tolerance'] = tolerance
-
-    layout = go.Layout(
-        title='{} Quantized Pes Gauges (Tolerance: {}cm)'.format(
-            trackway_name,
-            round(2 * 100 * tolerance)
-        ),
-        xaxis={'title': 'Trackway Position (m)'},
-        yaxis={'title': 'Gauge (m)'}
-    )
 
     scatter_trace = plotting.create_scatter(
         pes_tracks['curvePosition'],
@@ -37,20 +27,18 @@ def make_segments(fraction: float) -> list:
         pes_tracks['tolerance'].tolist(),
         weighted=False
     )
+
     segment_traces = [
         trace
         for s in segments
         for trace in plotting.make_segment_traces(pes_tracks, s)
-        ]
+    ]
 
-    cd.display.plotly(
+    return dict(
+        segments=segments,
         data=[scatter_trace] + segment_traces,
-        layout=layout
+        layout=go.Layout(
+            xaxis={'title': 'Trackway Position (m)'},
+            yaxis={'title': 'Gauge (m)'}
+        )
     )
-
-    return segments
-
-
-make_segments(0.25)
-make_segments(0.5)
-make_segments(1.0)

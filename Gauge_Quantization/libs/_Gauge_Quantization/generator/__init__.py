@@ -33,7 +33,7 @@ def fill_interpolates(count: int, interpolates: InterpPoints) -> InterpPoints:
 
     last_value = interp_values[-1]
     if last_value[0] < count:
-        interp_values.append((count, first_value[1]))
+        interp_values.append((count, last_value[1]))
 
     return interp_values
 
@@ -52,9 +52,13 @@ def get_midline_offsets(
     interp_values = fill_interpolates(count, interpolate_keyframes)
     x_values = [interp[0] for interp in interp_values]
     y_values = [interp[1] for interp in interp_values]
-    interp_function = interp1d(x_values, y_values, 'cubic', )
+    interp_function = interp1d(
+        x_values,
+        y_values,
+        'linear' if len(x_values) > 3 else 'linear'
+    )
 
-    return list(interp_function(list(range(count))))
+    return list(interp_function(list(range(1, count + 1))))
 
 
 def make_track_entry(index: int, midline_offset: float) -> dict:
@@ -72,17 +76,27 @@ def make_track_entry(index: int, midline_offset: float) -> dict:
         A dictionary containing the information for the created track
     """
 
-    is_left = not (index & 1)
+    is_left = (index & 1)
 
     sign = 1 if is_left else -1
 
     return dict(
         index=index,
+        curvePosition=float(index),
         left=is_left,
         pes=True,
         x=float(index),
         y=sign * midline_offset
     )
+
+
+def calculate_gauge(track: dict, tracks: typing.List[dict]) -> float:
+    index = tracks.index(track)
+    last_index = len(tracks) - 1
+    before = tracks[index - 1] if index > 0 else tracks[index + 1]
+    after = tracks[index + 1] if index < last_index else tracks[index - 1]
+
+    return abs(track['y']) + abs(before['y'] + after['y']) / 2
 
 
 def create(
@@ -109,7 +123,12 @@ def create(
 
     midline_offsets = get_midline_offsets(count, midline_offset_interpolates)
 
-    return pd.DataFrame([
-        make_track_entry(index, midline_offsets[index])
-        for index in range(1, count + 1)
-    ])
+    tracks = [
+        make_track_entry(index + 1, midline_offsets[index])
+        for index in range(count)
+    ]
+
+    df = pd.DataFrame(tracks)
+    df['simpleGauge'] = [calculate_gauge(track, tracks) for track in tracks]
+
+    return df

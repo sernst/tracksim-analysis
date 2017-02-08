@@ -40,7 +40,7 @@ def get_weighted_median(quantities) -> mstats.ValueUncertainty:
     pop = mdist.population(dist)
     return mstats.ValueUncertainty(
         mdist.percentile(pop, 0.5),
-        mdist.weighted_median_average_deviation(pop)
+        max(0.00001, mdist.weighted_median_average_deviation(pop))
     )
 
 
@@ -52,7 +52,10 @@ def get_unweighted_median(quantities) -> mstats.ValueUncertainty:
         for value in values
     ])
 
-    return mstats.ValueUncertainty(median_value, median_absolute_deviation)
+    return mstats.ValueUncertainty(
+        median_value,
+        max(0.00001, median_absolute_deviation)
+    )
 
 
 def compare(
@@ -70,6 +73,9 @@ def compare(
         comparison
     :param other:
         The quantity to be compared against the group
+    :param weighted:
+        Whether or not the median value for the group should be calculated
+        using uncertainty weighting or not
     :return:
         The result of the comparison between the group of quantities and the
         other quantity

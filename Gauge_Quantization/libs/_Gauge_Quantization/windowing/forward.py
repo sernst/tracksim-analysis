@@ -45,6 +45,6 @@ def compute(
 
     while segments[-1].end_index < len(quantities):
         start_index = segments[-1].end_index
-        segments.append(get_segment(quantities, start_index))
+        segments.append(get_segment(quantities, start_index, weighted))
 
     return segments

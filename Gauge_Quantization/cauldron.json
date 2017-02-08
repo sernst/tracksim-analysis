@@ -15,10 +15,11 @@
     "S06-Explore-Uncertainty.py",
     "S07-Plot-Uncertainty.py",
     "S08-Introduce-Quantization.md",
-    "S09.py",
-    "S10.py",
+    "S09-Idealized-Shrinking-Gauge.py",
+    "S10-Tolerance-Segmentation.py",
     "S11-Forward-Quantizing.py",
-    "S12-Precision-Quantizing.py"
+    "S12-Introduce-Precision-Windowing.md",
+    "S13-Precision-Quantizing.py"
   ],
   "summary": "",
   "title": "Gauge Quantization"

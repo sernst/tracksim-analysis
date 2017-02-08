@@ -61,6 +61,8 @@ def make_ranged_quantity_traces(
         show_legend: bool = True
 ) -> typing.List[dict]:
 
+    plot_name = name if name else 'Range'
+
     value = quantity.value
     upper_value = quantity.value + quantity.uncertainty
     lower_value = quantity.value - quantity.uncertainty
@@ -73,7 +75,7 @@ def make_ranged_quantity_traces(
         y=[value, value],
         color='rgb({},{},{})'.format(*color),
         showlegend=show_legend,
-        name=name,
+        name=plot_name,
         legendgroup=legend_group
     )
 
@@ -84,6 +86,7 @@ def make_ranged_quantity_traces(
         showlegend=False,
         legendgroup=legend_group,
         fill='tonexty',
+        name='{} Upper Bound'.format(plot_name),
         fillcolor=fill_color
     )
 
@@ -91,6 +94,7 @@ def make_ranged_quantity_traces(
         x=[x_start, x_end],
         y=[lower_value, lower_value],
         color=line_color,
+        name='{} Lower Bound'.format(plot_name),
         showlegend=False,
         legendgroup=legend_group
     )
@@ -102,13 +106,13 @@ def make_segment_traces(
         tracks: pd.DataFrame,
         segment: Segment,
         color: tuple = (255, 0, 0),
-        name: str = 'Quantized',
+        name: str = 'Segment',
         legend_group: str = 'segments',
         show_legend: bool = None
 
 ) -> list:
-    start = segment['start_index']
-    end = segment['stop_index']
+    start = segment.start_index
+    end = segment.stop_index
 
     def get_midpoint_between(before_index: int, after_index: int) -> float:
         positions = tracks['curvePosition'].values
@@ -121,7 +125,7 @@ def make_segment_traces(
         return (positions[before_index] + positions[after_index]) / 2
 
     should_show_legend = (
-        segment['start_index'] == 0
+        segment.start_index == 0
         if show_legend is None
         else show_legend
     )
