@@ -1,8 +1,9 @@
 import typing
 import pandas as pd
 from scipy.interpolate import interp1d
+import measurement_stats as mstats
 
-InterpPoints = typing.List[typing.Tuple[float, float]]
+InterpPoints = typing.List[typing.Tuple[float, float, float]]
 
 
 def fill_interpolates(count: int, interpolates: InterpPoints) -> InterpPoints:
@@ -23,17 +24,17 @@ def fill_interpolates(count: int, interpolates: InterpPoints) -> InterpPoints:
     """
 
     if not interpolates:
-        return [(1, 0.5), (count, 0.5)]
+        return [(1, 0.5, 0.00001), (count, 0.5, 0.00001)]
 
     interp_values = sorted(list(interpolates), key=lambda x: x[0])
 
     first_value = interp_values[0]
     if first_value[0] > 1:
-        interp_values.insert(0, (1, first_value[1]))
+        interp_values.insert(0, (1, first_value[1], first_value[2]))
 
     last_value = interp_values[-1]
     if last_value[0] < count:
-        interp_values.append((count, last_value[1]))
+        interp_values.append((count, last_value[1], last_value[2]))
 
     return interp_values
 
@@ -41,7 +42,7 @@ def fill_interpolates(count: int, interpolates: InterpPoints) -> InterpPoints:
 def get_midline_offsets(
         count: int,
         interpolate_keyframes: InterpPoints
-) -> typing.List[float]:
+) -> typing.List[mstats.ValueUncertainty]:
     """
 
     :param count:
@@ -52,16 +53,21 @@ def get_midline_offsets(
     interp_values = fill_interpolates(count, interpolate_keyframes)
     x_values = [interp[0] for interp in interp_values]
     y_values = [interp[1] for interp in interp_values]
-    interp_function = interp1d(
-        x_values,
-        y_values,
-        'linear' if len(x_values) > 3 else 'linear'
+    uncertainties = [interp[2] for interp in interp_values]
+
+    values_interpolator = interp1d(x_values, y_values, 'linear')
+    uncertainties_interpolator = interp1d(x_values, uncertainties, 'linear')
+
+    return mstats.values.join(
+        list(values_interpolator(list(range(1, count + 1)))),
+        list(uncertainties_interpolator(list(range(1, count + 1)))),
     )
 
-    return list(interp_function(list(range(1, count + 1))))
 
-
-def make_track_entry(index: int, midline_offset: float) -> dict:
+def make_track_entry(
+        index: int,
+        midline_offset: mstats.ValueUncertainty
+) -> dict:
     """
     Creates a dictionary containing the track information for the track at
     the specified index and offset the specified distance away from the
@@ -86,17 +92,37 @@ def make_track_entry(index: int, midline_offset: float) -> dict:
         left=is_left,
         pes=True,
         x=float(index),
-        y=sign * midline_offset
+        y=sign * midline_offset.value,
+        dy=midline_offset.uncertainty
     )
 
 
-def calculate_gauge(track: dict, tracks: typing.List[dict]) -> float:
+def calculate_gauge(
+        track: dict,
+        tracks: typing.List[dict]
+) -> mstats.ValueUncertainty:
+    """
+
+    :param track:
+    :param tracks:
+    :return:
+    """
+
     index = tracks.index(track)
     last_index = len(tracks) - 1
     before = tracks[index - 1] if index > 0 else tracks[index + 1]
     after = tracks[index + 1] if index < last_index else tracks[index - 1]
 
-    return abs(track['y']) + abs(before['y'] + after['y']) / 2
+    y = mstats.ValueUncertainty(track['y'], track['dy'])
+    y_before = mstats.ValueUncertainty(before['y'], before['dy'])
+    y_after = mstats.ValueUncertainty(after['y'], after['dy'])
+
+    gauge = (
+        abs(y) +
+        abs(y_before + y_after) / 2
+    )  # type: mstats.ValueUncertainty
+
+    return gauge
 
 
 def create(
@@ -129,6 +155,9 @@ def create(
     ]
 
     df = pd.DataFrame(tracks)
-    df['simpleGauge'] = [calculate_gauge(track, tracks) for track in tracks]
+
+    gauges = [calculate_gauge(track, tracks) for track in tracks]
+    df['simpleGauge'] = [g.value for g in gauges]
+    df['simpleGaugeUnc'] = [g.uncertainty for g in gauges]
 
     return df

@@ -5,6 +5,7 @@ import measurement_stats.distributions as mdist
 from collections import namedtuple
 import numpy as np
 
+import pandas as pd
 import cauldron
 
 IndexedQuantity = namedtuple('IndexedValue_NT', ['index', 'quantity'])
@@ -100,3 +101,29 @@ def compare(
     cauldron.step.breathe()
 
     return Comparison(median=median, deviation=delta / error)
+
+
+def get_segment_bounds(
+        quantities: typing.List[IndexedQuantity],
+        tracks: pd.DataFrame
+) -> typing.Tuple[float, float]:
+
+    def get_midpoint_between(before_index: int, after_index: int) -> float:
+        positions = tracks['curvePosition'].values
+
+        if before_index < 0:
+            return positions[0] - 0.05
+        elif after_index >= (len(positions) - 1):
+            return positions[-1] + 0.05
+
+        return (positions[before_index] + positions[after_index]) / 2
+
+    if not quantities:
+        return 0, 0
+
+    first_index = quantities[0].index  # type: int
+    last_index = quantities[-1].index  # type: int
+    return (
+        get_midpoint_between(first_index - 1, first_index),
+        get_midpoint_between(last_index, last_index + 1)
+    )

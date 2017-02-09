@@ -100,7 +100,7 @@ def get_segment(
         return None
 
     group = [find_max_precision(available)]
-    comparison = Comparison(median=available[0].value, deviation=0)
+    comparison = Comparison(median=available[0].quantity, deviation=0)
 
     for i in range(len(all_quantities)):
         neighbor = get_next_neighbor(

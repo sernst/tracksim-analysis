@@ -19,7 +19,10 @@
     "S10-Tolerance-Segmentation.py",
     "S11-Forward-Quantizing.py",
     "S12-Introduce-Precision-Windowing.md",
-    "S13-Precision-Quantizing.py"
+    "S13-Precision-Shrinking-Gauge.py",
+    "S14-Precision-Quantizing.py",
+    "S15-Introduce-Grouping.md",
+    "S16-Grouping-Results.py"
   ],
   "summary": "",
   "title": "Gauge Quantization"

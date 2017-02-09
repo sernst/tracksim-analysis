@@ -4,6 +4,7 @@ import plotly.graph_objs as go
 import pandas as pd
 
 from _Gauge_Quantization.windowing.support import Segment
+from _Gauge_Quantization.windowing.support import get_segment_bounds
 
 
 def create_scatter(x, y, error=None, color:str = None, **kwargs) -> dict:
@@ -111,28 +112,17 @@ def make_segment_traces(
         show_legend: bool = None
 
 ) -> list:
-    start = segment.start_index
-    end = segment.stop_index
-
-    def get_midpoint_between(before_index: int, after_index: int) -> float:
-        positions = tracks['curvePosition'].values
-
-        if before_index < 0:
-            return positions[0] - 0.05
-        elif after_index >= (len(positions) - 1):
-            return positions[-1] + 0.05
-
-        return (positions[before_index] + positions[after_index]) / 2
-
     should_show_legend = (
         segment.start_index == 0
         if show_legend is None
         else show_legend
     )
 
+    bounds = get_segment_bounds(segment.quantities, tracks)
+
     return make_ranged_quantity_traces(
-        x_start=get_midpoint_between(start - 1, start),
-        x_end=get_midpoint_between(end, end + 1),
+        x_start=bounds[0],
+        x_end=bounds[1],
         quantity=segment.median,
         color=color,
         name=name,

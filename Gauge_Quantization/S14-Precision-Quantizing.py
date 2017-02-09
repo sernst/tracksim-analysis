@@ -1,7 +1,7 @@
 import cauldron as cd
 import pandas as pd
 import plotly.graph_objs as go
-from _Gauge_Quantization import precision_windowing
+from _Gauge_Quantization.windowing import precision as precision_windowing
 from _Gauge_Quantization import plotting
 
 tracks = cd.shared.tracks  # type: pd.DataFrame
@@ -33,7 +33,29 @@ segment_traces = [
     for trace in plotting.make_segment_traces(pes_tracks, s)
 ]
 
+cd.display.markdown(
+    """
+    ## Precision Windowing {{ trackway_name }}
+
+    Applying the precision-windowed clustering algorithm to the
+    {{ trackway_name }} trackway yields a segmentation of:
+    """,
+    trackway_name=trackway_name
+)
+
 cd.display.plotly(
     data=[scatter_trace] + segment_traces,
     layout=layout
 )
+
+cd.display.markdown(
+    """
+    which is also noticeably different than the forward-windowed result
+    previously shown. We now have a highly robust and objective way of
+    segmenting gauge values within real trackways, which allows
+    us to rigorously present results on the variations of gauges within
+    trackways.
+    """
+)
+
+cd.shared.segments = segments

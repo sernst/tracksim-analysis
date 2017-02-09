@@ -2,6 +2,17 @@ import typing
 import pandas as pd
 
 
+def get_color(track: pd.Series, tracks: pd.DataFrame, darkest_value: int = 0):
+    min_color = min(255, max(0, darkest_value))
+    max_uncertainty = max(0.01, tracks['simpleGaugeUnc'].max())
+    factor = min(1.0, track['simpleGaugeUnc'] / max_uncertainty)
+    color_value = int(round((255 - min_color) * factor)) + min_color
+    return 'rgb({color}, {other}, {other})'.format(
+        color=color_value,
+        other=int(round((1 - factor) * min_color))
+    )
+
+
 def create_attribute(name: str, value) -> str:
     return '{}="{}"'.format(name, value)
 
@@ -62,12 +73,12 @@ def transform_y(position: float, transformation: dict) -> float:
 
 
 def make_circles(tracks: pd.DataFrame, transformation: dict) -> list:
-    def make_circle(row: pd.Series):
+    def make_circle(track: pd.Series):
         return create_tag('circle', {
             'r': 16,
-            'cx': transform_x(row['x'], transformation),
-            'cy': transform_y(row['y'], transformation),
-            'style': 'fill:black'
+            'cx': transform_x(track['x'], transformation),
+            'cy': transform_y(track['y'], transformation),
+            'style': 'fill:{}'.format(get_color(track, tracks))
         })
 
     return [make_circle(row) for index, row in tracks.iterrows()]
@@ -110,7 +121,7 @@ def make_gauge_lines(tracks: pd.DataFrame, transformation: dict) -> list:
         y_gauge = track['y'] + delta
 
         line = create_tag('line', {
-            'stroke': 'rgb(200, 200, 200)',
+            'stroke': get_color(track, tracks, 150),
             'stroke-width': '4',
             'x1': transform_x(track['x'], transformation),
             'y1': transform_y(track['y'], transformation),
@@ -120,7 +131,7 @@ def make_gauge_lines(tracks: pd.DataFrame, transformation: dict) -> list:
 
         circle = create_tag('circle', {
             'r': 6,
-            'style': 'fill: rgb(200, 200, 200)',
+            'style': 'fill: {}'.format(get_color(track, tracks, 150)),
             'cx': transform_x(track['x'], transformation),
             'cy': transform_y(y_gauge, transformation)
         })

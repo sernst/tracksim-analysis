@@ -4,7 +4,7 @@ from _Gauge_Quantization import generator
 from _Gauge_Quantization.windowing import display
 from _Gauge_Quantization.generator import draw
 
-tracks = generator.create(12, (4, 0.3), (8, 0.1))
+tracks = generator.create(12, (4, 0.3, 0.000001), (8, 0.1, 0.000001))
 tracks['width'] = 0.3
 
 cd.display.markdown(
